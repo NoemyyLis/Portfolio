@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lisseth Chavez | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:        #1E3A5F;
+      --blue:        #7C3AED;
+      --blue-mid:    #8B5CF6;
+      --blue-soft:   #F5F3FF;
+      --teal:        #0D9488;
+      --teal-soft:   #F0FDFA;
+      --purple:      #7C3AED;
+      --purple-soft: #F5F3FF;
+      --rose:        #E11D48;
+      --amber:       #D97706;
+      --bg:          #F8FAFC;
+      --white:       #FFFFFF;
+      --text:        #1E293B;
+      --subtext:     #64748B;
+      --border:      #E2E8F0;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); }
+
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--white);
+      box-shadow: 0 1px 10px rgba(0,0,0,0.08);
+      z-index: 1000;
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+    .nav-logo { color: var(--navy); font-weight: 700; font-size: 1rem; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      color: var(--subtext);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+    /* ── HERO ────────────────────────────── */
+    #hero {
+      min-height: 50vh;
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #ddd6fe 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 90px 2rem 40px;
+    }
+    .hero-content { max-width: 640px; }
+    .hero-role {
+      display: inline-block;
+      background: rgba(124,58,237,0.1);
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(124,58,237,0.2);
+    }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .hero-tagline {
+      font-size: 0.97rem;
+      color: var(--subtext);
+      line-height: 1.75;
+      margin-bottom: 2.25rem;
+    }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero-open-to {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.75rem;
+    }
+    .open-label { font-size: 0.78rem; font-weight: 600; color: var(--subtext); text-transform: uppercase; letter-spacing: 1px; }
+    .open-tag {
+      background: var(--white); color: var(--navy);
+      font-size: 0.82rem; font-weight: 600;
+      padding: 0.3rem 0.85rem; border-radius: 20px;
+      border: 1.5px solid rgba(124,58,237,0.25);
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      padding: 0.75rem 1.75rem;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #6d28d9; transform: translateY(-1px); }
+    .btn-outline {
+      border: 2px solid var(--navy);
+      color: var(--navy);
+      padding: 0.75rem 1.75rem;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--navy); color: #fff; }
+
+    /* ── SHARED ──────────────────────────── */
+    section { padding: 50px 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--blue);
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2.75rem;
+    }
+
+    /* ── ABOUT ───────────────────────────── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: auto 1.4fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .about-photo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 190px;
+    }
+    .about-photo-wrap:hover .about-photo { filter: brightness(0.75); }
+    .about-photo-wrap:hover .photo-hi { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .photo-hi {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      pointer-events: none;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      white-space: nowrap;
+    }
+    .about-photo {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 4px solid var(--white);
+      box-shadow: 0 0 0 3px #7C3AED, 0 8px 32px rgba(124,58,237,0.15);
+      transition: filter 0.25s ease;
+    }
+    .about-text p {
+      color: var(--subtext);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+      font-size: 0.975rem;
+    }
+    .about-details { display: flex; flex-direction: column; gap: 1rem; }
+    .detail-item { display: flex; align-items: center; gap: 0.85rem; font-size: 0.9rem; }
+    .detail-icon {
+      width: 40px; height: 40px;
+      background: var(--blue-soft);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      border: 1px solid rgba(37,99,235,0.12);
+    }
+    .detail-label { font-size: 0.7rem; color: var(--subtext); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.15rem; }
+    .detail-value { font-weight: 600; color: var(--text); }
+
+    /* ── EXPERIENCE ──────────────────────── */
+    #experience { background: var(--bg); }
+    .timeline { position: relative; padding-left: 2.25rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 10px; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateY(0); }
+    .timeline-dot {
+      position: absolute;
+      left: -2.25rem;
+      top: 8px;
+      width: 16px; height: 16px;
+      background: var(--blue);
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+    .timeline-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s;
+    }
+    .timeline-card:hover { box-shadow: 0 6px 24px rgba(37,99,235,0.1); }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-company { font-weight: 700; color: var(--navy); font-size: 1.05rem; }
+    .timeline-date {
+      font-size: 0.78rem;
+      color: var(--blue);
+      background: var(--blue-soft);
+      padding: 0.25rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 600;
+      white-space: nowrap;
+      border: 1px solid rgba(37,99,235,0.15);
+    }
+    .timeline-role { font-weight: 600; color: var(--text); font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .timeline-location { font-size: 0.8rem; color: var(--subtext); margin-bottom: 1rem; }
+    .timeline-bullets { list-style: none; }
+    .timeline-bullets li {
+      font-size: 0.875rem;
+      color: var(--subtext);
+      line-height: 1.75;
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-bullets li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--blue);
+      font-size: 0.75rem;
+      top: 0.1rem;
+    }
+
+    #skills { background: var(--purple-soft); }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    .skill-category {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .skill-category.visible { opacity: 1; transform: translateY(0); }
+    .skill-category-title {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: var(--blue);
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 2px solid rgba(124,58,237,0.2);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      background: var(--white); color: var(--navy);
+      padding: 0.4rem 0.9rem; border-radius: 20px;
+      font-size: 0.82rem; font-weight: 500;
+      border: 1px solid rgba(124,58,237,0.2);
+      cursor: default;
+      transition: background 0.18s, color 0.18s;
+    }
+    .skill-tag:hover { background: var(--blue); color: #fff; }
+
+    /* ── COMMUNITY HIGHLIGHT ─────────────── */
+    .community-highlight {
+      margin-top: 2.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      border-radius: 14px;
+      padding: 1.6rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .community-highlight.visible { opacity: 1; transform: translateY(0); }
+    .community-badge {
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid rgba(124,58,237,0.2);
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      padding: 0.3rem 0.75rem; border-radius: 20px;
+      white-space: nowrap; flex-shrink: 0; margin-top: 0.2rem;
+    }
+    .community-body { flex: 1; }
+    .community-title { font-weight: 700; color: var(--navy); font-size: 1rem; margin-bottom: 0.2rem; }
+    .community-org { font-size: 0.8rem; color: var(--subtext); margin-bottom: 0.85rem; }
+    .community-body ul { list-style: none; }
+    .community-body ul li {
+      font-size: 0.875rem; color: var(--subtext);
+      line-height: 1.75; padding-left: 1.25rem;
+      position: relative; margin-bottom: 0.4rem;
+    }
+    .community-body ul li::before {
+      content: '▸'; position: absolute; left: 0;
+      color: var(--blue); font-size: 0.75rem; top: 0.1rem;
+    }
+
+    /* ── VALUES ──────────────────────────── */
+    #values { background: var(--white); }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .value-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      border-radius: 14px;
+      padding: 1.5rem;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.2s;
+    }
+    .value-card.visible { opacity: 1; transform: translateY(0); }
+    .value-card:hover {
+      box-shadow: 0 6px 24px rgba(124,58,237,0.1);
+      transform: translateY(-2px);
+    }
+    .value-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .value-title { font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .value-desc { font-size: 0.85rem; color: var(--subtext); line-height: 1.65; }
+
+    /* ── EDUCATION ───────────────────────── */
+    #education { background: var(--bg); }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .edu-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.2s;
+    }
+    .edu-card.visible { opacity: 1; transform: translateY(0); }
+    .edu-card:hover { box-shadow: 0 6px 24px rgba(37,99,235,0.1); }
+    .edu-org { font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; font-size: 1rem; }
+    .edu-degree { font-weight: 600; color: var(--text); font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .edu-date { font-size: 0.8rem; color: var(--subtext); margin-bottom: 0.75rem; }
+    .edu-detail { font-size: 0.85rem; color: var(--subtext); line-height: 1.7; }
+    .cert-card { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0.85rem; }
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+      color: #fff; padding: 0.75rem 1.4rem;
+      border-radius: 10px; font-size: 0.88rem; font-weight: 700;
+    }
+    .cert-meta { font-size: 0.82rem; color: var(--subtext); }
+
+    /* ── CONTACT ─────────────────────────── */
+    #contact { background: var(--bg); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-subtitle { color: var(--subtext); margin-bottom: 2rem; font-size: 1rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      padding: 1.1rem 1.5rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+    }
+    .contact-card:hover {
+      box-shadow: 0 6px 20px rgba(37,99,235,0.1);
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .contact-icon { font-size: 1.3rem; }
+    .contact-label { font-size: 0.7rem; color: var(--subtext); margin-bottom: 0.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* QR Code box */
+    .qr-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .qr-box-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--subtext); }
+    .qr-box canvas, .qr-box img { border-radius: 8px; }
+    .qr-placeholder {
+      width: 160px; height: 160px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: var(--subtext);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .qr-placeholder span { font-size: 2rem; }
+    .qr-note { font-size: 0.75rem; color: var(--subtext); max-width: 160px; line-height: 1.5; }
+
+    /* ── FOOTER ──────────────────────────── */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2.4rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-photo { width: 150px; height: 150px; }
+      .values-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .nav-links { gap: 1.25rem; }
+      .nav-links a { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Lisseth Chavez</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#values">Values</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-role">Project Manager &nbsp;·&nbsp; Operations &nbsp;·&nbsp; Administrative Professional</div>
+    <h1 id="hero-name">Lisseth Chavez</h1>
+    <p class="hero-tagline">
+      Delivering high-impact work through organized execution, cross-functional collaboration,
+      and a passion for operational excellence.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://www.linkedin.com/in/lisseth-chavez" target="_blank" class="btn-primary">View LinkedIn</a>
+      <a href="LissethChavez_Resume.pdf" download class="btn-outline">⬇ Download Resume</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <img src="photo.jpg" alt="Lisseth Chavez" class="about-photo" />
+        <div class="photo-hi">Hi! 👋</div>
+      </div>
+      <div class="about-text">
+        <p>
+          Born in Cojutepeque, El Salvador, and raised in the United States since the age of 9,
+          I built my career in a language that wasn't even my first. That experience taught me
+          resilience, adaptability, and the power of always pushing forward — values I bring to
+          everything I do.
+        </p>
+        <p>
+          Over 10 years I've worked across food service, healthcare, public safety, and now tech —
+          building expertise in cross-functional workflows, stakeholder communication, and
+          operational logistics along the way. Currently serving as a Program Manager on Apple's
+          IS&amp;T Communications &amp; Engagement team through the Year Up United apprenticeship.
+        </p>
+        <p>
+          I thrive in environments where collaboration and purpose go hand in hand. I'm passionate
+          about building clear systems, keeping teams aligned, and delivering work that actually
+          makes a difference — for the people I work with and the communities I serve.
+        </p>
+      </div>
+      <div class="about-details">
+        <div class="detail-item">
+          <div class="detail-icon">📍</div>
+          <div>
+            <div class="detail-label">Location</div>
+            <div class="detail-value">San Jose, CA</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">💼</div>
+          <div>
+            <div class="detail-label">Current Role</div>
+            <div class="detail-value">Program Manager · Apple IS&amp;T</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">🏅</div>
+          <div>
+            <div class="detail-label">Certification</div>
+            <div class="detail-value">PSM I — Scrum.org</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">🌐</div>
+          <div>
+            <div class="detail-label">Languages</div>
+            <div class="detail-value">English &amp; Spanish — Fluent</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">⏱️</div>
+          <div>
+            <div class="detail-label">Experience</div>
+            <div class="detail-value">10+ Years</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="container">
+    <p class="section-label">What Drives Me</p>
+    <h2 class="section-title">What I Value</h2>
+    <div class="values-grid">
+
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Collaboration</div>
+        <div class="value-desc">The best work happens when people come together, listen, and build on each other's strengths. I seek out teammates and environments that grow stronger together.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <div class="value-title">Community</div>
+        <div class="value-desc">Lifting others is at the core of who I am — in my work and in my neighborhood. I'm proud to come from San Jose and give back to the communities that shaped me.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <div class="value-title">Making an Impact</div>
+        <div class="value-desc">I'm driven by work that actually matters. Whether it's improving a process or supporting a team, I want my contributions to leave things better than I found them.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🗂️</div>
+        <div class="value-title">Organized & Aligned Work</div>
+        <div class="value-desc">Clarity and structure aren't just preferences — they're how I keep projects moving and teams on the same page. I bring order to complexity so others can focus.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">📈</div>
+        <div class="value-title">Growth</div>
+        <div class="value-desc">I'm always learning and evolving. From healthcare to tech, every role has pushed me forward — and I bring that same growth mindset to every new challenge I take on.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🛡️</div>
+        <div class="value-title">Reliability</div>
+        <div class="value-desc">People can count on me to follow through, meet deadlines, and show up fully. My track record of promotions and expanded responsibility reflects a commitment to being someone others trust.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Work History</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Apple Inc.</span>
+            <span class="timeline-date">Feb 2026 – Present</span>
+          </div>
+          <div class="timeline-role">Program Manager, IS&amp;T Communications &amp; Engagement Apprentice</div>
+          <div class="timeline-location">Sunnyvale, CA</div>
+          <ul class="timeline-bullets">
+            <li>Established and managed IS&amp;T Communications intake and project management workflows using Wrike, Quip, and Miro, standardizing how work is scoped, tracked, and delivered across the team.</li>
+            <li>Applied PM practices to plan, monitor, and support delivery of 5+ high-visibility communications reaching thousands of IS&amp;T employees, proactively resolving blockers to maintain on-schedule delivery.</li>
+            <li>Driving an AI-driven editing tool from planning through execution, refining functionality and running tests to improve internal communications processes aligned with Apple's quality standards.</li>
+            <li>Partnered cross-functionally with engineers, product managers, and subject matter experts to drive communications tracks to completion, managing capacity planning and stakeholder reporting.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Stanford University</span>
+            <span class="timeline-date">Jul 2025 – Present</span>
+          </div>
+          <div class="timeline-role">Special Events Patrol Officer</div>
+          <div class="timeline-location">Stanford, CA</div>
+          <ul class="timeline-bullets">
+            <li>Coordinate event operations for high-profile campus events with up to 50,000 attendees, managing logistics, crowd flow, and real-time problem-solving across multiple teams.</li>
+            <li>Liaise between event management, the Department of Public Safety, and Stanford Police to communicate protocols, manage incidents, and maintain real-time situational awareness.</li>
+            <li>Establish on-site traffic control and crowd management infrastructure, making real-time decisions based on event scale, crowd flow patterns, and safety requirements.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Ravenswood Family Health Network</span>
+            <span class="timeline-date">Jun 2021 – Aug 2025</span>
+          </div>
+          <div class="timeline-role">Patient Services Assistant</div>
+          <div class="timeline-location">East Palo Alto, CA</div>
+          <ul class="timeline-bullets">
+            <li>Began as a Call Center Agent managing 80+ daily patient calls across multiple departments; promoted to Patient Services Assistant within 10 months for exceptional performance in patient-provider coordination.</li>
+            <li>Managed 20+ daily check-ins, appointments, and enrollment processes ensuring HIPAA compliance and timely connection to essential healthcare programs and services.</li>
+            <li>Partnered with clinical and administrative teams across 10+ departments to resolve inquiries, optimize scheduling, and improve operational efficiency.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Chipotle Mexican Grill</span>
+            <span class="timeline-date">Oct 2016 – Jun 2021</span>
+          </div>
+          <div class="timeline-role">Kitchen Manager</div>
+          <div class="timeline-location">San Jose, CA</div>
+          <ul class="timeline-bullets">
+            <li>Managed end-to-end inventory operations for a high-volume location serving 100+ customers daily, tracking stock levels and delivering data-driven ordering recommendations to prevent shortages.</li>
+            <li>Redesigned kitchen workspace layout to optimize operational flow; led a team of 6 across opening and closing shifts, overseeing onboarding and training of new hires.</li>
+            <li>Served as primary point of contact for biannual Ecosure health and safety audits, maintaining facility compliance and audit-readiness across all workstations.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Community & Leadership highlight -->
+    <div class="community-highlight">
+      <span class="community-badge">Community &amp; Leadership</span>
+      <div class="community-body">
+        <div class="community-title">Intern Community Lead — Rooted &amp; Rising</div>
+        <div class="community-org">Year Up United &nbsp;·&nbsp; Feb 2026 – Present &nbsp;·&nbsp; San Jose, CA</div>
+        <ul>
+          <li>Created and led <strong>Rooted &amp; Rising</strong> — an ongoing event series for up to 15 interns focused on building community, sharing skills, and elevating interns' access to knowledge and resources.</li>
+          <li>Plan and coordinate inclusive internal events while streamlining documentation and resource organization across shared platforms.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">What I Know</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-category">
+        <div class="skill-category-title">Professional Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Project Coordination</span>
+          <span class="skill-tag">Agile / Scrum</span>
+          <span class="skill-tag">Timeline &amp; Milestone Management</span>
+          <span class="skill-tag">Stakeholder Communication</span>
+          <span class="skill-tag">Cross-Functional Collaboration</span>
+          <span class="skill-tag">Events Operations</span>
+          <span class="skill-tag">Technical Documentation</span>
+          <span class="skill-tag">Capacity Planning</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">Technical Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Wrike</span>
+          <span class="skill-tag">Quip</span>
+          <span class="skill-tag">Miro</span>
+          <span class="skill-tag">Box</span>
+          <span class="skill-tag">Slack</span>
+          <span class="skill-tag">Zoom</span>
+          <span class="skill-tag">Microsoft Office 365</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">PowerPoint</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Epic</span>
+          <span class="skill-tag">macOS &amp; iOS</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">AI Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Claude</span>
+          <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">ChatGPT</span>
+          <span class="skill-tag">Internal Apple AI Platforms</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">English — Fluent</span>
+          <span class="skill-tag">Spanish — Fluent</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Education &amp; Certifications</p>
+    <h2 class="section-title">Learning &amp; Growth</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-org">Year Up United</div>
+        <div class="edu-degree">Certificate – Project Management</div>
+        <div class="edu-date">Sept. 2025 – July 2026 &nbsp;·&nbsp; San Jose, CA</div>
+        <div class="edu-detail">
+          Intensive career development program focused on professional skills, technical training,
+          and corporate internship experience. Coursework included Project Management, Agile Methodology,
+          Project Scoping, Data Analysis, and Data Reporting using Tableau, Power BI, and Excel.
+        </div>
+      </div>
+      <div class="edu-card cert-card">
+        <div class="cert-badge">🏅 &nbsp;Professional Scrum Master I</div>
+        <div class="cert-meta">Scrum.org &nbsp;·&nbsp; Issued December 2025</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-org">Southern New Hampshire University</div>
+        <div class="edu-degree">Associate of Arts in General Studies — Business Concentration</div>
+        <div class="edu-date">In Progress &nbsp;·&nbsp; Expected August 2027</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-inner">
+      <div>
+        <p class="contact-subtitle">Open to new opportunities and connections — feel free to reach out!</p>
+        <div class="contact-links">
+          <a href="LissethChavez_Resume.pdf" download class="contact-card">
+            <span class="contact-icon">📄</span>
+            <div>
+              <div class="contact-label">Resume</div>
+              Download PDF
+            </div>
+          </a>
+          <a href="mailto:lissethchavez72@gmail.com" class="contact-card">
+            <span class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#4CAF50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/><path fill="#1E88E5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/><path fill="#E53935" d="M35,11.2l-11,8.25l-11-8.25L12,8l12,9l12-9L35,11.2z"/><path fill="#C62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"/><path fill="#FBC02D" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0C43.076,8,45,9.924,45,12.298z"/></svg>
+            </span>
+            <div>
+              <div class="contact-label">Email</div>
+              lissethchavez72@gmail.com
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/lisseth-chavez" target="_blank" class="contact-card">
+            <span class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+            </span>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              linkedin.com/in/lisseth-chavez
+            </div>
+          </a>
+          <a href="tel:4085094802" class="contact-card">
+            <span class="contact-icon">📞</span>
+            <div>
+              <div class="contact-label">Phone</div>
+              (408) 509-4802
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- QR CODE — update the URL below once your site is live -->
+      <div class="qr-box">
+        <div class="qr-box-title">Scan My Portfolio</div>
+        <div id="qrcode-container">
+          <!-- QR code renders here via JavaScript -->
+        </div>
+        <div class="qr-note">Update the URL in the code once your site is live online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Lisseth Chavez &nbsp;·&nbsp; San Jose, CA</p>
+</footer>
+
+<!-- QR Code library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  // ── Typing animation ─────────────────────────────────────────────
+  const heroName = document.getElementById('hero-name');
+  const fullName = 'Lisseth Chavez';
+  heroName.textContent = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'typing-cursor';
+  cursor.style.height = '0.8em';
+  heroName.appendChild(cursor);
+
+  let i = 0;
+  const typeInterval = setInterval(() => {
+    if (i < fullName.length) {
+      cursor.insertAdjacentText('beforebegin', fullName[i]);
+      i++;
+    } else {
+      clearInterval(typeInterval);
+      setTimeout(() => cursor.remove(), 1800);
+    }
+  }, 150);
+
+  // ── QR Code ──────────────────────────────────────────────────────
+  const PORTFOLIO_URL = "https://www.linkedin.com/in/lisseth-chavez";
+  new QRCode(document.getElementById("qrcode-container"), {
+    text: PORTFOLIO_URL,
+    width: 160, height: 160,
+    colorDark: "#1E3A5F",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  // ── Active nav on scroll ─────────────────────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  function updateNav() {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 80) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+
+  // ── Fade-in on scroll ────────────────────────────────────────────
+  const animItems = document.querySelectorAll('.timeline-item, .skill-category, .edu-card, .value-card, .community-highlight');
+
+  function checkFadeIn() {
+    animItems.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 60) {
+        el.classList.add('visible');
+      }
+    });
+    updateNav();
+  }
+
+  window.addEventListener('scroll', checkFadeIn);
+  checkFadeIn();
+</script>
+</body>
+</html>
