@@ -60,6 +60,15 @@
     }
     .nav-links a:hover { color: var(--navy); }
     .nav-links a.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--navy);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
 
     /* ── HERO ────────────────────────────── */
     #hero {
@@ -422,6 +431,7 @@
       font-weight: 500;
       transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
     }
+    .contact-card > div { min-width: 0; overflow-wrap: break-word; }
     .contact-card:hover {
       box-shadow: 0 6px 20px rgba(37,99,235,0.1);
       border-color: var(--blue);
@@ -476,12 +486,31 @@
       .hero-content h1 { font-size: 2.4rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .about-photo { width: 150px; height: 150px; }
-      .values-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .values-grid { grid-template-columns: 1fr; gap: 1rem; }
       .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
       .edu-grid { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; }
-      .nav-links { gap: 1.25rem; }
-      .nav-links a { font-size: 0.8rem; }
+
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--white);
+        flex-direction: column;
+        gap: 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: 0.9rem 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .community-highlight { flex-direction: column; }
+      .community-badge { white-space: normal; }
     }
   </style>
 </head>
@@ -491,7 +520,8 @@
 <nav>
   <div class="nav-inner">
     <span class="nav-logo">Lisseth Chavez</span>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#values">Values</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -915,6 +945,14 @@
     colorDark: "#1E3A5F",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.M
+  });
+
+  // ── Mobile nav toggle ────────────────────────────────────────────
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinksEl = document.getElementById('nav-links');
+  navToggle.addEventListener('click', () => navLinksEl.classList.toggle('open'));
+  navLinksEl.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinksEl.classList.remove('open'));
   });
 
   // ── Active nav on scroll ─────────────────────────────────────────
